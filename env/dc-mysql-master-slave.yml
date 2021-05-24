@@ -1,0 +1,38 @@
+version: "3.0"
+
+services:
+  mysql-master:
+    image: mysql:5.7
+    container_name: mysql-master
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root #设置root帐号密码
+    ports:
+    - "3308:3306"
+    volumes:
+    - mysql-master-data:/var/lib/mysql #数据文件挂载
+    - mysql-master-config:/etc/mysql/conf.d #配置文件挂载
+    - mysql-master-log:/var/log/mysql #日志文件挂载
+    - /etc/localtime:/etc/localtime:ro
+  mysql-slave:
+    image: mysql:5.7
+    container_name: mysql-slave
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root #设置root帐号密码
+    ports:
+    - "3309:3306"
+    volumes:
+    - mysql-slave-data:/var/lib/mysql #数据文件挂载
+    - mysql-slave-config:/etc/mysql/conf.d #配置文件挂载
+    - mysql-slave-log:/var/log/mysql #日志文件挂载
+    - /etc/localtime:/etc/localtime:ro
+volumes:
+  mysql-master-data:
+  mysql-master-config:
+  mysql-master-log:
+  mysql-slave-data:
+  mysql-slave-config:
+  mysql-slave-log:

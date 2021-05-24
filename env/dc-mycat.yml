@@ -1,0 +1,20 @@
+version: "3.0"
+
+services:
+  mycat:
+    image: mycat:1.6.7.6
+    container_name: mycat
+    restart: always
+    privileged: true
+    ports:
+    - "8066:8066"
+    - "9066:9066"
+    environment:
+    - TZ=Asia/Shanghai
+    volumes:
+    - mycat-config:/usr/local/mycat/conf
+    - mycat-logs:/usr/local/mycat/logs
+    - /etc/localtime:/etc/localtime:ro
+volumes:
+  mycat-config:
+  mycat-logs:

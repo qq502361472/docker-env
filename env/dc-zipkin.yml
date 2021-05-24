@@ -1,0 +1,12 @@
+version: "3.0"
+services:
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    restart: always
+    ports:
+    - 9411:9411
+    environment:
+    - TZ=Asia/Shanghai
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
