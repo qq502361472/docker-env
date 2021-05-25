@@ -4,7 +4,7 @@ services:
   sentinel-dashboard:
     image: bladex/sentinel-dashboard
     container_name: sentinel
-    restart: no
+    restart: "no"
     ports:
     - "8858:8858"
     - "8719:8719"
