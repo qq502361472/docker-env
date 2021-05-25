@@ -15,7 +15,11 @@ services:
     - mysql-config:/etc/mysql/conf.d #配置文件挂载
     - mysql-log:/var/log/mysql #日志文件挂载
     - /etc/localtime:/etc/localtime:ro
+    networks:
+      - dc
 volumes:
   mysql-data:
   mysql-config:
   mysql-log:
+networks:
+  dc:
