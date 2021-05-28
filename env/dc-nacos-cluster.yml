@@ -6,7 +6,7 @@ services:
     image: nacos/nacos-server:2.0.1
     volumes:
     - nacos1-log:/home/nacos/logs
-    - ./dc-nacos-conf.properties:/home/nacos/init.d/custom.properties
+    - ./conf/dc-nacos-conf.properties:/home/nacos/init.d/custom.properties
     - /etc/localtime:/etc/localtime:ro
     ports:
     - "8848:8848"
@@ -32,7 +32,7 @@ services:
     container_name: nacos2
     volumes:
     - nacos2-log:/home/nacos/logs
-    - ./dc-nacos-conf.properties:/home/nacos/init.d/custom.properties
+    - ./conf/dc-nacos-conf.properties:/home/nacos/init.d/custom.properties
     - /etc/localtime:/etc/localtime:ro
     ports:
     - "8849:8848"
@@ -57,7 +57,7 @@ services:
     container_name: nacos3
     volumes:
     - nacos3-log:/home/nacos/logs
-    - ./dc-nacos-conf.properties:/home/nacos/init.d/custom.properties
+    - ./conf/dc-nacos-conf.properties:/home/nacos/init.d/custom.properties
     - /etc/localtime:/etc/localtime:ro
     ports:
     - "8850:8848"
