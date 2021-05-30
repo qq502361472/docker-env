@@ -6,7 +6,7 @@ services:
     image: nacos/nacos-server:2.0.1
     volumes:
     - nacos-log:/home/nacos/logs
-    - ./dc-nacos-conf.properties:/home/nacos/init.d/custom.properties
+    - ./conf/dc-nacos-conf.properties:/home/nacos/init.d/custom.properties
     - /etc/localtime:/etc/localtime:ro
     ports:
     - "8848:8848"
