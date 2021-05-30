@@ -4,7 +4,7 @@ services:
 
   seata-server:
     container_name: seata
-    image: seataio/seata-server:1.4.2
+    image: seataio/seata-server:1.3.0
     hostname: seata-server
     ports:
     - 8091:8091
