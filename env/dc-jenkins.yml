@@ -1,0 +1,15 @@
+version: "3.0"
+
+services:
+  jenkins:
+    image: jenkins
+    container_name: jenkins
+    volumes:
+    - jenkins-info:/var/jenkins_home #数据文件挂载
+    - /etc/localtime:/etc/localtime:ro
+    ports:
+    - "8080:8080"
+    - "50000:50000"
+    restart: "no"
+volumes:
+  jenkins-info:
