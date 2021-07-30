@@ -8,8 +8,23 @@ services:
     - jenkins-info:/var/jenkins_home #数据文件挂载
     - /etc/localtime:/etc/localtime:ro
     ports:
-    - "8080:8080"
+    - "90:8080"
     - "50000:50000"
+    restart: "no"
+  gitlab:
+    image: gitlab/gitlab-ce
+    container_name: gitlab
+    ports:
+    - "91:80"
+    - "92:443"
+    - "93:22"
+    volumes:
+      - gitlab-config:/etc/gitlab
+      - gitlab-logs:/var/log/gitlab
+      - gitlab-data:/var/opt/gitlab
     restart: "no"
 volumes:
   jenkins-info:
+  gitlab-config:
+  gitlab-logs:
+  gitlab-data:
