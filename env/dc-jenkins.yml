@@ -2,7 +2,7 @@ version: "3.0"
 
 services:
   jenkins:
-    image: jenkins
+    image: jenkins/jenkins
     container_name: jenkins
     volumes:
     - jenkins-info:/var/jenkins_home #数据文件挂载
@@ -11,20 +11,5 @@ services:
     - "90:8080"
     - "50000:50000"
     restart: "no"
-  gitlab:
-    image: gitlab/gitlab-ce
-    container_name: gitlab
-    ports:
-    - "91:80"
-    - "92:443"
-    - "93:22"
-    volumes:
-      - gitlab-config:/etc/gitlab
-      - gitlab-logs:/var/log/gitlab
-      - gitlab-data:/var/opt/gitlab
-    restart: "no"
 volumes:
   jenkins-info:
-  gitlab-config:
-  gitlab-logs:
-  gitlab-data:
