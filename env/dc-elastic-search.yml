@@ -1,0 +1,18 @@
+version: "3.0"
+
+services:
+  elastic_search:
+    image: elasticsearch:7.5.2
+    container_name: es
+    environment:
+    - "discovery.type=single-node"
+    - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+    - es-info:/usr/share/elasticsearch/data
+    - /etc/localtime:/etc/localtime:ro
+    ports:
+    - "9200:9200"
+    - "9300:9300"
+    restart: "no"
+volumes:
+  es-info:
