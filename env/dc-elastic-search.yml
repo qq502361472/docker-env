@@ -2,13 +2,18 @@ version: "3.0"
 
 services:
   elastic_search:
-    image: elasticsearch:7.5.2
+    build:
+      context: .
+      dockerfile: ./conf/elasticsearch.dockerfile
     container_name: es
     environment:
-    - "discovery.type=single-node"
+    - discovery.type=single-node
+    - ES_CLUSTERNAME=docker-cluster
     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     volumes:
-    - es-info:/usr/share/elasticsearch/data
+    - es-data:/usr/share/elasticsearch/data
+    - es-config:/usr/share/elasticsearch/config  #分词器的配置在config目录下
+    - es-logs:/usr/share/elasticsearch/logs
     - /etc/localtime:/etc/localtime:ro
     ports:
     - "9200:9200"
@@ -21,7 +26,24 @@ services:
       SERVER_NAME: es:9200
       ELASTICSEARCH_HOSTS: http://es:9200
     ports:
-      - "5601:5601"
+    - "5601:5601"
+    restart: "no"
+  nginx:
+    image: nginx:1.10
+    container_name: nginx
+    volumes:
+    - es-nx-html:/usr/share/nginx/html
+    - es-nx-conf:/etc/nginx
+    - es-nx-logs:/var/log/nginx
+    - /etc/localtime:/etc/localtime:ro
+    ports:
+    - "80:80"
     restart: "no"
 volumes:
-  es-info:
+  es-data:
+  es-plugins:
+  es-logs:
+  es-config:
+  es-nx-html:
+  es-nx-conf:
+  es-nx-logs:
