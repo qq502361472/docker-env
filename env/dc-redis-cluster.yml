@@ -1,0 +1,95 @@
+version: '3'
+
+services:
+  redis1:
+    image: redis:5.0.3
+    volumes:
+      - /home/hujian/redis-cluster/7001/conf/redis.conf:/etc/redis/redis.conf
+      - /home/hujian/redis-cluster/7001/data:/data
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+    ports:
+      - '7001:7001'     #服务端口
+      - '17001:17001'   #集群端口
+    command: ["redis-server", "/etc/redis/redis.conf"]
+    privileged: true    #环境变量
+
+
+  redis2:
+    image: redis:5.0.3
+    #network_mode: host
+    volumes:
+      - /home/hujian/redis-cluster/7002/conf/redis.conf:/etc/redis/redis.conf
+      - /home/hujian/redis-cluster/7002/data:/data
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+    ports:
+      - '7002:7002'     #服务端口
+      - '17002:17002'   #集群端口
+    command: ["redis-server", "/etc/redis/redis.conf"]
+    privileged: true    #环境变量
+
+  redis3:
+    image: redis:5.0.3
+    #network_mode: host
+    volumes:
+      - /home/hujian/redis-cluster/7003/conf/redis.conf:/etc/redis/redis.conf
+      - /home/hujian/redis-cluster/7003/data:/data
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+    ports:
+      - '7003:7003'     #服务端口
+      - '17003:17003'   #集群端口
+    command: ["redis-server", "/etc/redis/redis.conf"]
+    privileged: true    #环境变量
+
+  redis4:
+    image: redis:5.0.3
+    #network_mode: host
+    volumes:
+      - /home/hujian/redis-cluster/7004/conf/redis.conf:/etc/redis/redis.conf
+      - /home/hujian/redis-cluster/7004/data:/data
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+    ports:
+      - '7004:7004'     #服务端口
+      - '17004:17004'   #集群端口
+    command: ["redis-server", "/etc/redis/redis.conf"]
+    privileged: true    #环境变量
+
+  redis5:
+    image: redis:5.0.3
+    #network_mode: host
+    volumes:
+      - /home/hujian/redis-cluster/7005/conf/redis.conf:/etc/redis/redis.conf
+      - /home/hujian/redis-cluster/7005/data:/data
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+    ports:
+      - '7005:7005'     #服务端口
+      - '17005:17005'   #集群端口
+    command: ["redis-server", "/etc/redis/redis.conf"]
+    privileged: true    #环境变量
+
+  redis6:
+    image: redis:5.0.3
+    #network_mode: host
+    volumes:
+      - /home/hujian/redis-cluster/7006/conf/redis.conf:/etc/redis/redis.conf
+      - /home/hujian/redis-cluster/7006/data:/data
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+    ports:
+      - '7006:7006'     #服务端口
+      - '17006:17006'   #集群端口
+    command: ["redis-server", "/etc/redis/redis.conf"]
+    privileged: true    #环境变量
+
+networks:
+  redis-cluster:
